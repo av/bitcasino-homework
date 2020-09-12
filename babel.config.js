@@ -15,9 +15,10 @@ module.exports = function (api) {
             : {
                 useESModules: true,
               },
-          "styled-jsx": {
-            plugins: ["styled-jsx-plugin-postcss"],
-          },
+          // "styled-jsx": {
+          //   plugins: ["styled-jsx-plugin-postcss"],
+          //   sourceMaps: false,
+          // },
         },
       ],
     ],
