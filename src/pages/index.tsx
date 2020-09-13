@@ -28,15 +28,11 @@ function IndexPage() {
             </div>
             <CryptoTrackerPanel />
           </section>
-          <CryptoList className="crypto-list my-5" />
+          <CryptoList className="crypto-list my-5 flex flex-col flex-wrap" />
         </PageContent>
       </section>
       <BaseFooter className="py-10 text-black text-opacity-50" />
       <style jsx>{`
-        :global(.splash-section) {
-          min-height: 70vh;
-        }
-
         .splash-text {
           max-width: 25rem;
         }
@@ -45,8 +41,14 @@ function IndexPage() {
           max-width: 22rem;
         }
 
-        :global(.crypto-list) {
+        section :global(.crypto-list) {
+          height: 50vh;
+          align-content: flex-start;
+        }
+
+        section :global(.crypto-list > div) {
           max-width: 20rem;
+          flex: 0 0 2rem;
         }
       `}</style>
     </>

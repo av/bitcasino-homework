@@ -10,30 +10,58 @@ import {
 } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { screens } from "lib/animations";
+import { noop } from "lib/utils";
 
+/**
+ * A handle to control Screens with a
+ * passed ref. Allows setting a screen programmatically.
+ */
 export type ScreensHandle = {
   setScreen(screen: string): void;
 };
 
-export type Screen = {
-  (handle: ScreensHandle): Component;
-};
+/**
+ * A screen render prop, given a Screens handle
+ * should render the screen contents.
+ */
+export type Screen = (handle: ScreensHandle) => Component;
 
+/**
+ * Allows to specify a screen which should be displayed by default
+ * and pass a callback for listening a screen change initiation.
+ */
 export type ScreensProps = {
+  /**
+   * Defines which of the passed
+   * screens will be displayed by default,
+   * when it's not explicitly set otherwise.
+   */
   defaultScreen?: string;
+
+  /**
+   * Will be called as soon as a transition
+   * to the new screen starts.
+   */
   onScreenChange?(screen: string): void;
-  screens: { [key: string]: Screen };
+
+  /**
+   * Represents screens avaialble for
+   * the display. Screens could be either
+   * JSX rendering functions or a plain Function Components.
+   */
+  screens: Record<string, Screen>;
 };
 
 const animations = screens();
-const noopScreenChange = (screen: string) => {};
 
+/**
+ * A component, displaying multiple "screens"
+ * and allowing programmatically switch between them.
+ *
+ * Animates transitions between screens using Framer Motion.
+ */
 function Screens(
-  {
-    defaultScreen = "default",
-    onScreenChange = noopScreenChange,
-    screens,
-  }: ScreensProps,
+  { defaultScreen = "default", onScreenChange = noop, screens }: ScreensProps,
   ref: Ref<ScreensHandle>
 ) {
   const [currentScreen, setScreen] = useState(defaultScreen);
@@ -49,8 +77,6 @@ function Screens(
   };
 
   useImperativeHandle(ref, () => handle, [handle]);
-
-  console.log("SCREENS RENDER", currentScreen);
 
   return (
     <AnimatePresence initial={false}>
@@ -70,6 +96,10 @@ function Screens(
 
 export default forwardRef(Screens);
 
+/**
+ * A convenience helper to obtain a 
+ * ref to be passed to screens.
+ */
 export function useScreens(): MutableRefObject<ScreensHandle> {
   return useRef(null);
 }

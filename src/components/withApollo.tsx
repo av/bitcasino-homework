@@ -1,11 +1,14 @@
 import apollo from "next-with-apollo";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { createApolloClient } from "lib/apollo";
-import { NextPage } from "next";
 
+/**
+ * Sets up a HOC wrapping a given Next Page
+ * with an Apollo Provider.
+ */
 export default apollo(
-  function initClient({ initialState, ctx }) {
-    return createApolloClient(initialState, ctx);
+  function initClient({ initialState }) {
+    return createApolloClient(initialState);
   },
   {
     render: function PageWithApollo({ Page, props }) {

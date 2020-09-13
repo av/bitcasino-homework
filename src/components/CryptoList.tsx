@@ -13,61 +13,44 @@ import Button from "./Button";
 import { useEffect } from "react";
 import { serialize } from "lib/utils";
 import LoadingContent from "./LoadingContent";
+import AnimatedList from "./AnimatedList";
 
+/**
+ * A list of all tracked crypto assets, 
+ * gets the items from the global store
+ * and queries the blocktap API for latest prices.
+ * 
+ * Polls data each 5s.
+ */
 export default function CryptoList(props) {
   const { state, dispatch } = useGlobalState<
     CryptoTrackerState,
     CryptoTrackerAction
   >();
   const hasStoredItems = state.items.length !== 0;
-  const { loading, data, error } = useQuery<MarketsData>(fetchMarkets, {
-    skip: !hasStoredItems,
-    variables: {
-      ids: state.items,
-    },
-  });
+  const { loading, data = { markets: [] }, error } = useQuery<MarketsData>(
+    fetchMarkets,
+    {
+      skip: !hasStoredItems,
+      variables: {
+        ids: state.items,
+      },
+      pollInterval: 5000,
+      fetchPolicy: "no-cache",
+    }
+  );
 
   useEffect(() => {
     serialize(storageKey, state);
   }, [state.items]);
 
-  console.log(loading, data, error, hasStoredItems);
-
   return (
-    <>
-      <LoadingContent
-        isLoading={!data}
-        loading={() => <span>Loading</span>}
-        content={() => (
-          <>
-            <ul {...props}>
-              {data && data.markets.map((item) => {
-                return <CryptoItem key={item.id} item={item} />;
-              })}
-            </ul>
-          </>
-        )}
-      />
-      <Button
-        onClick={() =>
-          dispatch({
-            type: CryptoTrackerActionTypes.ADD,
-            item: "binance_eth_eur",
-          })
-        }
-      >
-        Add Crypto
-      </Button>
-      <Button
-        onClick={() =>
-          dispatch({
-            type: CryptoTrackerActionTypes.REMOVE,
-            item: "binance_eth_eur",
-          })
-        }
-      >
-        Remove Crypto
-      </Button>
-    </>
+    <div {...props}>
+      <AnimatedList getKey={(item) => item.id}>
+        {data.markets.map((item) => {
+          return <CryptoItem key={item.id} item={item} />;
+        })}
+      </AnimatedList>
+    </div>
   );
 }

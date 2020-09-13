@@ -6,10 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "e2e": "testcafe chrome ./e2e/*.ts"
+    "test:e2e": "testcafe chrome ./e2e/*.ts",
+    "test:unit": "jest",
+    "test:unit:watch": "jest --watch"
   },
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
+    "@types/jest": "^26.0.13",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link-context": "^1.0.20",
@@ -27,7 +30,10 @@
   "devDependencies": {
     "@types/node": "^14.6.4",
     "@types/react": "^16.9.49",
+    "babel-jest": "^26.3.0",
     "babel-plugin-inline-react-svg": "^1.1.1",
+    "enzyme": "^3.11.0",
+    "jest": "^26.4.2",
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-import": "^12.0.1",
     "postcss-nested": "^4.2.3",

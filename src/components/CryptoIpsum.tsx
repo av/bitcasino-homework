@@ -1,3 +1,6 @@
+/**
+ * Long live Satoshi!
+ */
 export default function CryptoIpsum() {
   return (
     <span>

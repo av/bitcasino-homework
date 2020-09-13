@@ -1,6 +1,11 @@
 import { classed } from "lib/utils";
 import { HTMLAttributes } from "react";
 
+/**
+ * Implements the basic behavior for a responsibe
+ * page content. When screen exceeds the max
+ * content width, centers itself in its parent.
+ */
 export default function PageContent({
   className,
   ...rest

@@ -1,6 +1,9 @@
 import { HTMLAttributes } from "react";
 import { classed } from "lib/utils";
 
+/**
+ * Basic container surface
+ */
 export default function Panel({
   children,
   className,

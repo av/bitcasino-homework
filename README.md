@@ -1,30 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Bitcasino Homework
 
-## Getting Started
+> Please, note that I've approached this homework as if I'd be working on it in a context of a much larger project. Aiming for something leaner, I'd arrange it in a fashion similar to how https://av.codes is [built](https://github.com/av/av).
 
-First, run the development server:
+## Features
+
+- Basic GraphQL setup with Apollo
+- Using Tailwind.css as a style driver
+- Basic (but type-aware) global state management with `useReducer` and friends
+- Custom `<Typeahead />` component built with hooks
+- Custom `<Input />` component with floating label (works on any background)
+- Animations using Framer Motion
+
+## Setup & run
+
+Just as you'd expect, clone and install all the deps
 
 ```bash
-npm run dev
-# or
+git clone git@github.com:av/bitcasino-homework.git
+cd bitcasino-homework
+yarn
+```
+
+To launch locally
+
+```bash
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+It's also deployed to the [https://bitcasino-homework.vercel.app/](https://bitcasino-homework.vercel.app/)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Tests
 
-## Learn More
+It would be great to cover this homework with proper tests, but unfortunately it took me slightly longer than I anticipated.
+I'm including a few tests, however, to highlight that I'd write them, given enough time:
 
-To learn more about Next.js, take a look at the following resources:
+- utils module test
+- Screens component test
+- sample E2E test, using TestCafe
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Notes & Improvements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+I approached this homework from a slightly ambitious side, implementing it like it's a part of larger already existing codebase. That struck me from the side of needing to cover all the bases which would've been written a long time before in such a codebase.
 
-## Deploy on Vercel
+However, you may find some of the bases I've still managed to cover interesting:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Typeahead from scratch with hooks
+- Animated Screens and List components
+- Global State without Redux
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+All being said, I'd wish to spend more time on certain behaviors to polish them a bit more.

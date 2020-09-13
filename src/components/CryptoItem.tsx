@@ -11,6 +11,11 @@ import { useCallback } from "react";
 
 export type CryptoItemProps = { item: Market };
 
+/**
+ * A single item for a crypto tracker
+ * Shows the tracked symbol, exchange
+ * and the last ticker price.
+ */
 export default function CryptoItem({ item }: CryptoItemProps) {
   const { dispatch } = useGlobalState<
     CryptoTrackerState,
@@ -28,10 +33,14 @@ export default function CryptoItem({ item }: CryptoItemProps) {
     <div className="crypto-item flex flex-row items-center p-2">
       <img src="/images/icon.svg" />
       <div className="ml-8 crypto-info">
-        <h3 className="font-bold text-lg">{item.baseSymbol}</h3>
+        <h3 className="font-bold text-lg">
+          <span>{item.baseSymbol} </span>
+          <span className="font-normal text-white text-opacity-25">
+            {formatters.marketExchange(item)}
+          </span>
+        </h3>
         <h5 className="text-sm text-white text-opacity-50">
           <span>{formatters.tickerPrice(item.ticker)}</span>
-          <span> €</span>
         </h5>
       </div>
 

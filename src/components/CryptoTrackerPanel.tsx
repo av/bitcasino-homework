@@ -1,6 +1,4 @@
 import Panel from "./Panel";
-import Input from "./Input";
-import Button from "./Button";
 import CryptoSelector from "./CryptoSelector";
 
 export function CryptoTrackerPanel() {

@@ -5,6 +5,13 @@ type ButtonProps = {
   variant?: "default" | "icon";
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
+/**
+ * Basic button component,
+ * ensures that the type is "button" by
+ * default to avoid potential issues with forms.
+ * 
+ * Supports the variant with an icon as a content.
+ */
 export default function Button({
   type = "button",
   variant = "default",

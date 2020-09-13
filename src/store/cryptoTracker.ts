@@ -1,6 +1,14 @@
 import { State, Action } from "./types";
 
+/**
+ * Crypto Tracker portion of a global state.
+ */
 export interface CryptoTrackerState extends State {
+  /**
+   * Items to be tracked.
+   * Represent a list of market ids to be
+   * displayed to the used.
+   */
   items: string[];
 }
 
@@ -21,7 +29,7 @@ export interface RemoveItemAction extends Action {
 
 export type CryptoTrackerAction = AddItemAction | RemoveItemAction;
 
-export const storageKey = 'state:cryptoTracker';
+export const storageKey = "state:cryptoTracker";
 
 export const initialState: CryptoTrackerState = {
   items: [],

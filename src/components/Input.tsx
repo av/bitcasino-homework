@@ -1,14 +1,25 @@
 import { classed } from "lib/utils";
-import {
-  InputHTMLAttributes,
-  forwardRef,
-  MutableRefObject,
-} from "react";
+import { InputHTMLAttributes, forwardRef, MutableRefObject } from "react";
 
+/**
+ * Alongside the default input attributes,
+ * adds the mandatory label to be notched when input is focused.
+ */
 type InputProps = {
   label: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
+/**
+ * A wrapper around input
+ * with a floating label.
+ * 
+ * Floating label is implemented using a <fieldset>
+ * and an invisible text with the same exact content
+ * as a floating label.
+ * 
+ * Notching is performed by transitioning the label
+ * based on the :placeholder-shown pseudo-class.
+ */
 function Input(
   { label, className, ...rest }: InputProps,
   ref: MutableRefObject<HTMLInputElement>
