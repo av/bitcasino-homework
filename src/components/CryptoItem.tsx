@@ -30,7 +30,7 @@ export default function CryptoItem({ item }: CryptoItemProps) {
   }, [item]);
 
   return (
-    <div className="crypto-item flex flex-row items-center p-2">
+    <div className="crypto-item flex flex-row items-center p-2" data-e2e-crypto-item>
       <img src="/images/icon.svg" />
       <div className="ml-8 crypto-info">
         <h3 className="font-bold text-lg">

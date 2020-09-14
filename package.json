@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "test": "yarn test:unit && yarn test:e2e",
     "test:e2e": "testcafe chrome ./e2e/*.ts",
     "test:unit": "jest",
     "test:unit:watch": "jest --watch"
@@ -28,12 +29,17 @@
     "react-hook-form": "^6.8.1"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.10.6",
     "@types/node": "^14.6.4",
     "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
     "babel-jest": "^26.3.0",
     "babel-plugin-inline-react-svg": "^1.1.1",
     "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.4",
     "jest": "^26.4.2",
+    "jest-environment-enzyme": "^7.1.2",
+    "jest-enzyme": "^7.1.2",
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-import": "^12.0.1",
     "postcss-nested": "^4.2.3",
@@ -42,5 +48,15 @@
     "tailwindcss": "^1.8.6",
     "testcafe": "^1.9.2",
     "typescript": "^4.0.2"
+  },
+  "jest": {
+    "rootDir": "src",
+    "modulePaths": [
+      "<rootDir>"
+    ],
+    "setupFilesAfterEnv": [
+      "jest-enzyme"
+    ],
+    "testEnvironment": "enzyme"
   }
 }

@@ -32,11 +32,11 @@ It's also deployed to the [https://bitcasino-homework.vercel.app/](https://bitca
 ## Tests
 
 It would be great to cover this homework with proper tests, but unfortunately it took me slightly longer than I anticipated.
-I'm including a few tests, however, to highlight that I'd write them, given enough time:
+I'm including a few very basic tests, however, to highlight that I'd write them, given enough time:
 
-- utils module test
-- Screens component test
-- sample E2E test, using TestCafe
+- [utils module test](https://github.com/av/bitcasino-homework/blob/master/src/lib/utils.test.ts)
+- [Screens component test](https://github.com/av/bitcasino-homework/blob/master/src/components/Screens.test.tsx)
+- [sample E2E test, using TestCafe](https://github.com/av/bitcasino-homework/blob/master/e2e/01-base-test.ts)
 
 ## Notes & Improvements
 
@@ -44,8 +44,8 @@ I approached this homework from a slightly ambitious side, implementing it like 
 
 However, you may find some of the bases I've still managed to cover interesting:
 
-- Typeahead from scratch with hooks
-- Animated Screens and List components
-- Global State without Redux
+- [Typeahead](https://github.com/av/bitcasino-homework/blob/master/src/components/Typeahead.tsx) from scratch with [hooks](https://github.com/av/bitcasino-homework/blob/master/src/hooks/useTypeahead.ts)
+- Animated [Screens](https://github.com/av/bitcasino-homework/blob/master/src/components/Screens.tsx) and [List](https://github.com/av/bitcasino-homework/blob/master/src/components/AnimatedList.tsx) components
+- [Global State](https://github.com/av/bitcasino-homework/blob/master/src/components/withGlobalState.tsx) without Redux
 
 All being said, I'd wish to spend more time on certain behaviors to polish them a bit more.

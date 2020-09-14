@@ -8,7 +8,7 @@ import {
   useRef,
   MutableRefObject,
 } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Transition } from "framer-motion";
 import { screens } from "lib/animations";
 import { noop } from "lib/utils";
 
@@ -24,7 +24,7 @@ export type ScreensHandle = {
  * A screen render prop, given a Screens handle
  * should render the screen contents.
  */
-export type Screen = (handle: ScreensHandle) => Component;
+export type Screen = (handle: ScreensHandle) => React.ReactNode;
 
 /**
  * Allows to specify a screen which should be displayed by default
@@ -50,6 +50,11 @@ export type ScreensProps = {
    * JSX rendering functions or a plain Function Components.
    */
   screens: Record<string, Screen>;
+
+  /**
+   * Allows overriding the transition used for screen changes.
+   */
+  transition?: Transition;
 };
 
 const animations = screens();
@@ -61,7 +66,7 @@ const animations = screens();
  * Animates transitions between screens using Framer Motion.
  */
 function Screens(
-  { defaultScreen = "default", onScreenChange = noop, screens }: ScreensProps,
+  { defaultScreen = "default", onScreenChange = noop, screens, transition }: ScreensProps,
   ref: Ref<ScreensHandle>
 ) {
   const [currentScreen, setScreen] = useState(defaultScreen);
@@ -83,7 +88,7 @@ function Screens(
       <motion.div
         className="screen-container"
         key={currentScreen}
-        transition={animations.transition}
+        transition={transition || animations.transition}
         initial={animations.initial}
         animate={animations.animate}
         exit={animations.exit}
@@ -97,7 +102,7 @@ function Screens(
 export default forwardRef(Screens);
 
 /**
- * A convenience helper to obtain a 
+ * A convenience helper to obtain a
  * ref to be passed to screens.
  */
 export function useScreens(): MutableRefObject<ScreensHandle> {

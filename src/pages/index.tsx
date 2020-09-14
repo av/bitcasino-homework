@@ -12,12 +12,12 @@ import { CryptoTrackerPanel } from "components/CryptoTrackerPanel";
 function IndexPage() {
   return (
     <>
-      <section className="bg-leprechaun-striped">
+      <section className="bg-leprechaun-striped" data-e2e-tracker-section>
         <PageContent>
           <BaseHeader className="py-10" />
         </PageContent>
         <PageContent className="text-white splash-section">
-          <section className="flex flex-col md:flex-row justify-between md:items-center">
+          <section className="flex flex-col md:flex-row justify-between md:items-center" data-e2e-tracker-splash>
             <div className="splash-text">
               <h1 className="text-4xl">
                 Now you can track all your cryptos here!

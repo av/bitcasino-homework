@@ -45,7 +45,7 @@ export default function CryptoList(props) {
   }, [state.items]);
 
   return (
-    <div {...props}>
+    <div {...props} data-e2e-crypto-list>
       <AnimatedList getKey={(item) => item.id}>
         {data.markets.map((item) => {
           return <CryptoItem key={item.id} item={item} />;

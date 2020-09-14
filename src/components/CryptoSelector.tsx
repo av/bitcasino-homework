@@ -82,7 +82,7 @@ export default function CryptoSelector() {
                 className="mb-2"
                 value={value}
                 item={(item) => (
-                  <div className="px-4 py-1 rounded">
+                  <div className="px-4 py-1 rounded" data-e2e-crypto-suggestion>
                     <h3 className="">{item.marketSymbol}</h3>
                     <h5 className="text-sm text-gray-600">
                       {formatters.tickerPrice(item.ticker)}
