@@ -44,6 +44,13 @@ I'm including a few very basic tests, however, to highlight that I'd write them,
 
 I approached this homework from a slightly ambitious side, implementing it like it's a part of larger already existing codebase. That struck me from the side of needing to cover all the bases which would've been written a long time before in such a codebase.
 
+So, I would improve behavior more in following areas, if had more time:
+- Animated component behaviors, sometimes the motion flows out of context
+- Typeahead reset lifecycle, when new asset is added to the tracker
+- Better behavior on mobile (it doesn't break, but still)
+- Better behavior for large amount of tracked assets
+- Incremental update & refetch instead of a single global query for all the assets
+
 However, you may find some of the bases I've still managed to cover interesting:
 
 - [Typeahead](https://github.com/av/bitcasino-homework/blob/master/src/components/Typeahead.tsx) from scratch with [hooks](https://github.com/av/bitcasino-homework/blob/master/src/hooks/useTypeahead.ts)
