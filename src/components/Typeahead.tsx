@@ -11,6 +11,8 @@ import { debounce, identity } from "lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import LoadingContent from "./LoadingContent";
 import Input from "./Input";
+import CenteredSpinner from "./CenteredSpinner";
+import * as animations from "lib/animations";
 
 /**
  * Confirgures the Typeahead component instance
@@ -85,6 +87,8 @@ export type TypeaheadProps<T> = {
  * of typeahead and could implement various interaction scenarios.
  */
 export type TypeaheadContentProps<T> = TypeaheadOutput<T> & TypeaheadProps<T>;
+
+const animation = animations.typeahead();
 
 /**
  * An abstract Typeahead component focused on async
@@ -188,30 +192,17 @@ export function Typeahead<T>(props: TypeaheadProps<T>) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            transition={{
-              opacity: { duration: 0.1 },
-              y: { duration: 0.2 },
-            }}
-            initial={{
-              y: "10%",
-              opacity: 0,
-              overflow: "hidden",
-            }}
-            animate={{
-              y: 0,
-              opacity: 1,
-              overflow: "auto",
-            }}
-            exit={{
-              y: "10%",
-              opacity: 0,
-              overflow: "hidden",
-            }}
+            transition={animation.transition}
+            initial={animation.initial}
+            animate={animation.animate}
+            exit={animation.exit}
             style={{
               position: "absolute",
               background: "whitesmoke",
               padding: "1rem",
               borderRadius: "1rem",
+              maxHeight: '50vh',
+              overflow: 'auto',
               boxShadow: "0 1rem 2rem 0 rgba(0, 0, 0, .2)",
             }}
           >
@@ -240,7 +231,7 @@ export function DefaultTypeaheadContent<T>({
   return (
     <LoadingContent
       isLoading={isLoading}
-      loading={() => "Loading"}
+      loading={() => <CenteredSpinner />}
       content={() =>
         data.map((dataItem) => (
           <motion.div

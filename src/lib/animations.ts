@@ -53,3 +53,27 @@ export function screens() {
     },
   };
 }
+
+export function typeahead() {
+  return {
+    transition: {
+      opacity: { duration: 0.1 },
+      y: { duration: 0.2 },
+    },
+    initial: {
+      y: "10%",
+      opacity: 0,
+      overflow: "hidden",
+    },
+    animate: {
+      y: 0,
+      opacity: 1,
+      overflow: "auto",
+    },
+    exit: {
+      y: "10%",
+      opacity: 0,
+      overflow: "hidden",
+    }
+  }
+}

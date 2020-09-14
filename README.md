@@ -2,6 +2,8 @@
 
 > Please, note that I've approached this homework as if I'd be working on it in a context of a much larger project. Aiming for something leaner, I'd arrange it in a fashion similar to how https://av.codes is [built](https://github.com/av/av).
 
+![Screenshot of a resulting image](https://link)
+
 ## Features
 
 - Basic GraphQL setup with Apollo

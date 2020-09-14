@@ -17,7 +17,10 @@ function IndexPage() {
           <BaseHeader className="py-10" />
         </PageContent>
         <PageContent className="text-white splash-section">
-          <section className="flex flex-col md:flex-row justify-between md:items-center" data-e2e-tracker-splash>
+          <section
+            className="flex flex-col items-center md:flex-row justify-between md:items-center"
+            data-e2e-tracker-splash
+          >
             <div className="splash-text">
               <h1 className="text-4xl">
                 Now you can track all your cryptos here!
@@ -28,28 +31,30 @@ function IndexPage() {
             </div>
             <CryptoTrackerPanel />
           </section>
-          <CryptoList className="crypto-list my-5 flex flex-col flex-wrap" />
+          <CryptoList className="crypto-list my-5 md:p-0 flex flex-col items-stretch md:flex-wrap" />
         </PageContent>
       </section>
       <BaseFooter className="py-10 text-black text-opacity-50" />
       <style jsx>{`
-        .splash-text {
+        .splash-text,
+        :global(.bt-panel) {
           max-width: 25rem;
         }
 
-        :global(.bt-panel) {
-          max-width: 22rem;
-        }
-
-        section :global(.crypto-list) {
-          height: 50vh;
-          align-content: flex-start;
+        @media (min-width: 1000px) {
+          section :global(.crypto-list) {
+            max-height: 50vh;
+            align-content: flex-start;
+          }
         }
 
         section :global(.crypto-list > div) {
-          max-width: 20rem;
-          flex: 0 0 2rem;
-        }
+          margin: .1rem;
+
+          /* Small tweak to improve readability 
+             of items over the leprechaun */
+          backdrop-filter: blur(20px);
+        }        
       `}</style>
     </>
   );

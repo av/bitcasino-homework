@@ -11,7 +11,7 @@ export default function PageContent({
   ...rest
 }: HTMLAttributes<HTMLElement>) {
   return <>
-    <div className={classed("mx-auto w-full", className)} {...rest} />
+    <div className={classed("p-4 mx-auto w-full", className)} {...rest} />
     <style jsx>{`
       div {
         max-width: var(--content-width);

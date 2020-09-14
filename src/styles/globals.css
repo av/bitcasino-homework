@@ -16,5 +16,5 @@ body,
   background: url(/images/figure.png) no-repeat, url(/images/bg.png) no-repeat,
     var(--purple-1000);
   background-position: bottom, right -40rem top 0;
-  background-size: 30rem, auto 100%;
+  background-size: 30rem, 70rem;
 }

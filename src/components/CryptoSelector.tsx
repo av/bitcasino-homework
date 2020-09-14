@@ -47,22 +47,24 @@ export default function CryptoSelector() {
   };
 
   // Obtains suggestions data for the given query
-  const getData = useCallback((query: string) => {
-    return apollo
-      .query<marketQueries.MarketsData>({
-        query: marketQueries.marketsLookup,
-        fetchPolicy: "no-cache",
-        variables: {
-          prefix: `${query}%`,
-        },
-      })
-      .then(({ data }) => data.markets)
-      .then((markets) => {
-        // Do not suggest what's been already added
-        return markets.filter((market) => !state.items.includes(market.id))
-      }
-      );
-  }, [state.items]);
+  const getData = useCallback(
+    (query: string) => {
+      return apollo
+        .query<marketQueries.MarketsData>({
+          query: marketQueries.marketsLookup,
+          fetchPolicy: "no-cache",
+          variables: {
+            prefix: `${query}%`,
+          },
+        })
+        .then(({ data }) => data.markets)
+        .then((markets) => {
+          // Do not suggest what's been already added
+          return markets.filter((market) => !state.items.includes(market.id));
+        });
+    },
+    [state.items]
+  );
 
   return (
     <>
@@ -82,7 +84,10 @@ export default function CryptoSelector() {
                 className="mb-2"
                 value={value}
                 item={(item) => (
-                  <div className="px-4 py-1 rounded" data-e2e-crypto-suggestion>
+                  <div
+                    className="crypto-suggestion px-4 py-1 rounded"
+                    data-e2e-crypto-suggestion
+                  >
                     <h3 className="">{item.marketSymbol}</h3>
                     <h5 className="text-sm text-gray-600">
                       {formatters.tickerPrice(item.ticker)}
@@ -97,7 +102,12 @@ export default function CryptoSelector() {
           <span>Add</span>
         </Button>
       </form>
-      <style jsx>{``}</style>
+      <style jsx>{`
+        form :global(.crypto-suggestion:hover) {
+          cursor: pointer;
+          background: rgba(0, 0, 0, 0.05);
+        }
+      `}</style>
     </>
   );
 }
